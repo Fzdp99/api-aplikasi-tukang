@@ -1,0 +1,715 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "API Tukangin",
+		"version": "0.0.1",
+		"description": "Find your handyman"
+	},
+	"paths": {
+		"/login": {
+			"post": {
+				"tags": ["Login Regis"],
+				"summary": "Login akun",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"username": { "type": "string", "example": "helltod" },
+									"password": {
+										"type": "string",
+										"example": "11102022"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "Login berhasil" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+		"/register": {
+			"post": {
+				"tags": ["Login Regis"],
+				"summary": "Register akun",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"username": { "type": "string", "example": "heltod" },
+									"phone_number": {
+										"type": "string",
+										"example": "08000000001"
+									},
+									"password": {
+										"type": "string",
+										"example": "08000000001"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": { "description": "Pendaftaran berhasil" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		},
+    "/my-profile": {
+			"get": {
+				"tags": ["Akun"],
+				"summary": "Data akun",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"401": { "description": "Unauthorized" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		},
+    "/update-profile": {
+			"put": {
+				"tags": ["Akun"],
+				"summary": "Update data profile",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": { "type": "string", "example": "heltod" },
+									"phone_number": { "type": "string", "example": "088686555" },
+									"gmail": { "type": "string", "example": "heltod@gmail.com" },
+									"address": { "type": "string", "example": "jl apa aja" },
+									"gender": { "type": "string", "example": "female" },
+									"place_date_of_birth": { "type": "string", "example": "nganjuk 30 desember 2024" },
+									"nationality": { "type": "string", "example": "zimbawe" },
+									"personal_summary": { "type": "text", "example": "saya adalah" },
+									"career_history": { "type": "string", "example": "nothing" },
+									"last_education": { "type": "string", "example": "sd" },
+									"language": { "type": "string", "example": "java" },
+									"salary": { "type": "string", "example": "10.000" },
+									"certificate": { "type": "string", "example": "nothing" }
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "success" },
+					"401": { "description": "Unauthorized" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		},
+		"/update-password": {
+			"put": {
+				"tags": ["Akun"],
+				"summary": "Update password akun",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"old_password": { "type": "string", "example": "231341" },
+									"new_password": { "type": "string", "example": "213132" }
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "Password berhasil di ubah" },
+					"201": { "description": "Password lama yang di masukan salah!" },
+					"401": { "description": "Unauthorized" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		},
+		"/delete-akun": {
+			"delete": {
+				"tags": ["Akun"],
+				"summary": "Delete akun",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"204": { "description": "Akun berhasil di hapus" },
+					"401": { "description": "Unauthorized" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		},
+    "/add-skill": {
+			"post": {
+				"tags": ["Skill"],
+				"summary": "Add skill",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"skill": { "type": "string", "example": "healing" },
+									"level": {
+										"type": "string",
+										"example": "5"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/delete-skill/{id}": {
+			"delete": {
+				"tags": ["Skill"],
+				"summary": "Delete skill",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+        "parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID skill",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+        ],
+				"responses": {
+					"204": { "description": "skill berhasil di hapus" },
+					"401": { "description": "Unauthorized" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		},
+    "/all-job": {
+			"get": {
+				"tags": ["Job"],
+				"summary": "list job",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "province",
+						"require": true,
+						"schema": {
+							"type": "string",
+              "example": "jawa timur"
+						}
+					},
+					{
+						"in": "query",
+						"name": "regency",
+						"require": true,
+						"schema": {
+							"type": "string",
+              "example": "lamongan"
+						}
+					},
+					{
+						"in": "query",
+						"name": "category",
+						"require": true,
+						"schema": {
+							"type": "string",
+							"example": "building"
+						}
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+    },
+    "/detail-job/{id}": {
+			"get": {
+				"tags": ["Job"],
+				"summary": "Detail job",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID job",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/my-job": {
+			"get": {
+				"tags": ["Job"],
+				"summary": "My job",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/create-job": {
+			"post": {
+				"tags": ["Job"],
+				"summary": "Create job",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"regency": { "type": "string", "example": "lamongan" },
+									"province": {
+										"type": "string",
+										"example": "jawa timur"
+									},
+									"city": {
+										"type": "string",
+										"example": "sidoarjo"
+									},
+									"address": {
+										"type": "string",
+										"example": "jl.apa aja yang mana aja, nomer 009"
+									},
+									"job_name": {
+										"type": "string",
+										"example": "Goblin hunter"
+									},
+									"category": {
+										"type": "string",
+										"example": "hunter"
+									},
+									"salary": {
+										"type": "string",
+										"example": "1.000.000"
+									},
+									"status": {
+										"type": "string",
+										"example": "berakhir"
+									},
+									"description": {
+										"type": "text",
+										"example": "pekerjaaan yang membutuhnkan apa yang"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "job berhasil di buat" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/update-job/{id}": {
+			"put": {
+				"tags": ["Job"],
+				"summary": "Update job",
+        "parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID job",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"regency": { "type": "string", "example": "lamongan" },
+									"province": {
+										"type": "string",
+										"example": "jawa timur"
+									},
+									"city": {
+										"type": "string",
+										"example": "sidoarjo"
+									},
+									"address": {
+										"type": "string",
+										"example": "jl.apa aja yang mana aja, nomer 009"
+									},
+									"job_name": {
+										"type": "string",
+										"example": "Goblin hunter"
+									},
+									"category": {
+										"type": "string",
+										"example": "hunter"
+									},
+									"salary": {
+										"type": "string",
+										"example": "1.000.000"
+									},
+									"status": {
+										"type": "string",
+										"example": "berakhir"
+									},
+									"description": {
+										"type": "text",
+										"example": "pekerjaaan yang membutuhnkan apa yang"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "job berhasil di buat" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/delete-job/{id}": {
+			"delete": {
+				"tags": ["Job"],
+				"summary": "Delete job",
+        "parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID job",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": { "description": "job berhasil di buat" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/create-question": {
+			"post": {
+				"tags": ["Question"],
+				"summary": "Create question",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"id_job": { "type": "string", "example": "1" },
+									"question": {
+										"type": "text",
+										"example": "apa ?"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "Question berhasil di buat" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/create-answer": {
+			"post": {
+				"tags": ["Answer"],
+				"summary": "Create answer",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"id_question": { "type": "string", "example": "1" },
+									"answer": {
+										"type": "text",
+										"example": "iya"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "Answer berhasil di buat" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/my-applicant": {
+			"get": {
+				"tags": ["Applicant"],
+				"summary": "My applicant",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/apply-job": {
+			"post": {
+				"tags": ["Applicant"],
+				"summary": "Apply job",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"id_job": { "type": "string", "example": "1" }
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/list-review/{id}": {
+			"get": {
+				"tags": ["Review"],
+				"summary": "Review user",
+        "parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID user",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/create-review": {
+			"post": {
+				"tags": ["Review"],
+				"summary": "Create review",
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"id_user": { "type": "string", "example": "1" },
+									"rate": {
+										"type": "string",
+										"example": "3"
+									},
+									"comment": {
+										"type": "text",
+										"example": "mukanya jelek"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "Review berhasil di buat" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/list-akun": {
+			"get": {
+				"tags": ["Admin"],
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"summary": "List akun by admin",
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/delete-akun-by-admin/{id}": {
+			"delete": {
+				"tags": ["Admin"],
+				"summary": "Delete akun by admin",
+        "parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID akun",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+        "security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+		},
+    "/update-password-by-admin/{id}": {
+			"put": {
+				"tags": ["Admin"],
+				"summary": "Update password akun by admin",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+        "parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID akun",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"password": { "type": "string", "example": "231341" }
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": { "description": "Password berhasil di ubah" },
+					"201": { "description": "Password lama yang di masukan salah!" },
+					"401": { "description": "Unauthorized" },
+					"422": { "description": "FAIL" }
+				}
+			}
+		}
+	},
+  
+	"components": {
+		"securitySchemes": {
+			"bearerAuth": {
+				"in": "header",
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		}
+	}
+}
