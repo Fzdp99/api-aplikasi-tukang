@@ -33,7 +33,19 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      regency: {
+        type: Sequelize.STRING,
+      },
+      province: {
+        type: Sequelize.STRING,
+      },
+      city: {
+        type: Sequelize.STRING,
+      },
       address: {
+        type: Sequelize.STRING,
+      },
+      job_category: {
         type: Sequelize.STRING,
       },
       gender: {

@@ -3,7 +3,7 @@
 	"info": {
 		"title": "API Tukangin",
 		"version": "0.0.1",
-		"description": "Find your handyman"
+		"description": "Find your job and worker"
 	},
 	"paths": {
 		"/login": {
@@ -96,7 +96,17 @@
 									"name": { "type": "string", "example": "heltod" },
 									"phone_number": { "type": "string", "example": "088686555" },
 									"gmail": { "type": "string", "example": "heltod@gmail.com" },
+									"regency": { "type": "string", "example": "lamongan" },
+									"province": {
+										"type": "string",
+										"example": "jawa timur"
+									},
+									"city": {
+										"type": "string",
+										"example": "sidoarjo"
+									},
 									"address": { "type": "string", "example": "jl apa aja" },
+									"job_category": { "type": "string", "example": "building" },
 									"gender": { "type": "string", "example": "female" },
 									"place_date_of_birth": { "type": "string", "example": "nganjuk 30 desember 2024" },
 									"nationality": { "type": "string", "example": "zimbawe" },
@@ -220,6 +230,67 @@
 					"204": { "description": "skill berhasil di hapus" },
 					"401": { "description": "Unauthorized" },
 					"422": { "description": "FAIL" }
+				}
+			}
+		},
+		"/list-worker": {
+			"get": {
+				"tags": ["Worker"],
+				"summary": "list worker",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "province",
+						"require": true,
+						"schema": {
+							"type": "string",
+              "example": "jawa timur"
+						}
+					},
+					{
+						"in": "query",
+						"name": "regency",
+						"require": true,
+						"schema": {
+							"type": "string",
+              "example": "lamongan"
+						}
+					},
+					{
+						"in": "query",
+						"name": "job_category",
+						"require": true,
+						"schema": {
+							"type": "string",
+							"example": "building"
+						}
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
+				}
+			}
+    },
+    "/detail-worker/{id}": {
+			"get": {
+				"tags": ["Worker"],
+				"summary": "Detail worker",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"require": true,
+						"description": "ID worker",
+						"schema": {
+							"type": "integer",
+							"example": "1"
+						}
+					}
+				],
+				"responses": {
+					"200": { "description": "success" },
+					"400": { "description": "FAIL" }
 				}
 			}
 		},

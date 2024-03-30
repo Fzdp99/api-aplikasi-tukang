@@ -4,12 +4,62 @@ module.exports = {
   async create(data) {
     return Akun.create(data);
   },
-  findAll(akun_role) {
+  findAll() {
+    return Akun.findAll({
+      attributes: ["id", "username", "role", "createdAt", "updatedAt"],
+    });
+  },
+  findAllWorker(req) {
     return Akun.findAll({
       where: {
-        ...(akun_role && { role: akun_role }),
+        role: "user",
+        ...(req.query.job_category && { job_category: req.query.job_category }),
+        ...(req.query.province && { province: req.query.province }),
+        ...(req.query.regency && { regency: req.query.regency }),
       },
-      attributes: ["id", "username", "role", "createdAt", "updatedAt"],
+      attributes: [
+        "id",
+        "name",
+        "regency",
+        "province",
+        "city",
+        "address",
+        "job_category",
+      ],
+    });
+  },
+  detailWorker(id) {
+    return Akun.findByPk(id, {
+      attributes: [
+        "id",
+        "name",
+        "phone_number",
+        "gmail",
+        "regency",
+        "province",
+        "city",
+        "address",
+        "job_category",
+        "gender",
+        "place_date_of_birth",
+        "nationality",
+        "personal_summary",
+        "career_history",
+        "last_education",
+        "language",
+        "salary",
+        "certificate",
+        "rating",
+        "createdAt",
+        "updatedAt",
+      ],
+      include: [
+        {
+          model: Skill,
+          as: "skill",
+          attributes: ["id", "skill", "level"],
+        },
+      ],
     });
   },
   find(id) {
@@ -21,7 +71,11 @@ module.exports = {
         "phone_number",
         "gmail",
         "name",
+        "regency",
+        "province",
+        "city",
         "address",
+        "job_category",
         "gender",
         "place_date_of_birth",
         "nationality",

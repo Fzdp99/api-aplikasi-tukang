@@ -23,6 +23,10 @@ apiRouter.put(
 );
 apiRouter.delete("/delete-akun", auth.authorize, controllers.Akun.destroy);
 
+// Worker
+apiRouter.get("/list-worker", controllers.Akun.listWorker);
+apiRouter.get("/detail-worker/:id", controllers.Akun.detailWorker);
+
 // Skill
 apiRouter.post("/add-skill", auth.authorize, controllers.Skill.create);
 apiRouter.delete(

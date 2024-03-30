@@ -18,6 +18,39 @@ module.exports = {
       });
   },
 
+  listWorker(req, res) {
+    Akun.listWorker(req)
+      .then(({ data, count }) => {
+        res.status(200).json({
+          status: "success",
+          data,
+          total: count,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          status: "FAIL",
+          message: err.message,
+        });
+      });
+  },
+
+  detailWorker(req, res) {
+    Akun.getWorker(req.params.id)
+      .then((post) => {
+        res.status(200).json({
+          status: "success",
+          data: post,
+        });
+      })
+      .catch((err) => {
+        res.status(422).json({
+          status: "FAIL",
+          message: err.message,
+        });
+      });
+  },
+
   show(req, res) {
     Akun.get(req.user.id)
       .then((post) => {

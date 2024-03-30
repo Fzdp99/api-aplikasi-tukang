@@ -42,8 +42,30 @@ module.exports = {
     }
   },
 
+  async listWorker(req) {
+    try {
+      const data = await Akun.findAllWorker(req);
+      const dataCount = data.length;
+
+      return {
+        data,
+        count: dataCount,
+      };
+    } catch (err) {
+      throw err;
+    }
+  },
+
   get(id) {
     return Akun.find(id);
+  },
+
+  getWorker(id) {
+    var idAkun = id;
+    if (id == 1) {
+      idAkun = 2;
+    }
+    return Akun.detailWorker(idAkun);
   },
 
   getAkun(id) {
@@ -108,7 +130,7 @@ module.exports = {
 
   createToken(payload) {
     return jwt.sign(payload, process.env.JWT_SIGNATURE_KEY || "Rahasia", {
-      expiresIn: "5h",
+      expiresIn: "1h",
     });
   },
 
