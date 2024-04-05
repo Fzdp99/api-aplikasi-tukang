@@ -62,6 +62,17 @@ module.exports = {
       ],
     });
   },
+  findPrivate(id) {
+    return Akun.findByPk(id, {
+      include: [
+        {
+          model: Skill,
+          as: "skill",
+          attributes: ["id", "skill", "level"],
+        },
+      ],
+    });
+  },
   find(id) {
     return Akun.findByPk(id, {
       attributes: [
@@ -130,6 +141,11 @@ module.exports = {
   searchUsername(username) {
     return Akun.findOne({
       where: { username },
+    });
+  },
+  searchGmail(gmail) {
+    return Akun.findOne({
+      where: { gmail },
     });
   },
   searchPhoneNumber(phone_number) {

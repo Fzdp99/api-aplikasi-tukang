@@ -27,7 +27,6 @@ module.exports = {
         type: Sequelize.STRING,
       },
       gmail: {
-        unique: true,
         type: Sequelize.STRING,
       },
       name: {

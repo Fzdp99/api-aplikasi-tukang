@@ -107,6 +107,15 @@ module.exports = {
       }
     }
 
+    if (req.body.gmail) {
+      const gmail = await Akun.searchGmail(req.body.gmail);
+
+      if (gmail) {
+        res.status(401).json({ message: "Gmail telah digunakan" });
+        return;
+      }
+    }
+
     Akun.update(req)
       .then(() => {
         res.status(200).json({

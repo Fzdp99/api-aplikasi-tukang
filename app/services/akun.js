@@ -84,7 +84,7 @@ module.exports = {
   },
 
   async update(req) {
-    const dataUser = Akun.find(req.user.id);
+    const dataUser = await Akun.findPrivate(req.user.id);
     const newData = {
       ...req.body,
       username: dataUser.username,
@@ -109,6 +109,10 @@ module.exports = {
 
   searchUsername(username) {
     return Akun.searchUsername(username);
+  },
+
+  searchGmail(gmail) {
+    return Akun.searchGmail(gmail);
   },
 
   searchPhoneNumber(phoneNumber) {
