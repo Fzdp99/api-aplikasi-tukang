@@ -10,6 +10,7 @@ module.exports = {
         ...(req.query.category && { category: req.query.category }),
         ...(req.query.province && { province: req.query.province }),
         ...(req.query.district && { district: req.query.district }),
+        ...(req.query.city && { city: req.query.city }),
       },
       attributes: [
         "id",

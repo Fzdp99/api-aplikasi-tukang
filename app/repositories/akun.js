@@ -16,6 +16,7 @@ module.exports = {
         ...(req.query.job_category && { job_category: req.query.job_category }),
         ...(req.query.province && { province: req.query.province }),
         ...(req.query.district && { district: req.query.district }),
+        ...(req.query.city && { city: req.query.city }),
       },
       attributes: [
         "id",

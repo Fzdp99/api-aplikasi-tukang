@@ -249,6 +249,15 @@
 					},
 					{
 						"in": "query",
+						"name": "city",
+						"require": true,
+						"schema": {
+							"type": "string",
+              "example": "medan"
+						}
+					},
+					{
+						"in": "query",
 						"name": "district",
 						"require": true,
 						"schema": {
@@ -306,6 +315,15 @@
 						"schema": {
 							"type": "string",
               "example": "jawa timur"
+						}
+					},
+					{
+						"in": "query",
+						"name": "city",
+						"require": true,
+						"schema": {
+							"type": "string",
+              "example": "medan"
 						}
 					},
 					{
