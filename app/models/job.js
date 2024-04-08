@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   Job.init(
     {
       id_user: DataTypes.STRING,
-      regency: DataTypes.STRING,
+      district: DataTypes.STRING,
       province: DataTypes.STRING,
       city: DataTypes.STRING,
       address: DataTypes.STRING,

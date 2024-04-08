@@ -16,7 +16,7 @@ module.exports = {
           as: "job",
           attributes: [
             "id",
-            "regency",
+            "district",
             "province",
             "city",
             "job_name",

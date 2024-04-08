@@ -12,7 +12,7 @@ module.exports = {
       id_user: {
         type: Sequelize.STRING,
       },
-      regency: {
+      district: {
         type: Sequelize.STRING,
       },
       province: {

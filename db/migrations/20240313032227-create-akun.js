@@ -32,7 +32,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      regency: {
+      district: {
         type: Sequelize.STRING,
       },
       province: {

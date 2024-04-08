@@ -9,12 +9,12 @@ module.exports = {
       where: {
         ...(req.query.category && { category: req.query.category }),
         ...(req.query.province && { province: req.query.province }),
-        ...(req.query.regency && { regency: req.query.regency }),
+        ...(req.query.district && { district: req.query.district }),
       },
       attributes: [
         "id",
         "id_user",
-        "regency",
+        "district",
         "province",
         "city",
         "job_name",
@@ -31,7 +31,7 @@ module.exports = {
       attributes: [
         "id",
         "id_user",
-        "regency",
+        "district",
         "province",
         "city",
         "job_name",

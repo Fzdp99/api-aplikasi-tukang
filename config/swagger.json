@@ -96,7 +96,7 @@
 									"name": { "type": "string", "example": "heltod" },
 									"phone_number": { "type": "string", "example": "088686555" },
 									"gmail": { "type": "string", "example": "heltod@gmail.com" },
-									"regency": { "type": "string", "example": "lamongan" },
+									"district": { "type": "string", "example": "kedungmaling" },
 									"province": {
 										"type": "string",
 										"example": "jawa timur"
@@ -249,11 +249,11 @@
 					},
 					{
 						"in": "query",
-						"name": "regency",
+						"name": "district",
 						"require": true,
 						"schema": {
 							"type": "string",
-              "example": "lamongan"
+              "example": "kedungmaling"
 						}
 					},
 					{
@@ -310,11 +310,11 @@
 					},
 					{
 						"in": "query",
-						"name": "regency",
+						"name": "district",
 						"require": true,
 						"schema": {
 							"type": "string",
-              "example": "lamongan"
+              "example": "kedungmaling"
 						}
 					},
 					{
@@ -385,7 +385,7 @@
 							"schema": {
 								"type": "object",
 								"properties": {
-									"regency": { "type": "string", "example": "lamongan" },
+									"district": { "type": "string", "example": "kedungmaling" },
 									"province": {
 										"type": "string",
 										"example": "jawa timur"
@@ -456,7 +456,7 @@
 							"schema": {
 								"type": "object",
 								"properties": {
-									"regency": { "type": "string", "example": "lamongan" },
+									"district": { "type": "string", "example": "kedungmaling" },
 									"province": {
 										"type": "string",
 										"example": "jawa timur"
